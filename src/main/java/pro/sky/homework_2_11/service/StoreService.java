@@ -12,11 +12,11 @@ import java.util.stream.Collectors;
 @Service
 public class StoreService {
 
-    private final Basket basked;
+    private final Basket basket;
     private final Map<Integer, Item> items;
 
-    public StoreService(Basket basked) {
-        this.basked = basked;
+    public StoreService(Basket basket) {
+        this.basket = basket;
         this.items = Map.of(
                 1, new Item(1, "Чайник", 2_000),
                 2, new Item(2, "Кофеварка ", 25_000),
@@ -28,7 +28,7 @@ public class StoreService {
     }
 
     public void add(List<Integer> ids) {
-       basked.add( ids.stream()
+       basket.add( ids.stream()
                .map(items::get)
                .filter(Objects::isNull)
                .collect(Collectors.toList())
@@ -36,6 +36,6 @@ public class StoreService {
     }
 
     public List<Item> get() {
-        return basked.get();
+        return basket.get();
     }
 }
